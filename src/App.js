@@ -1,46 +1,42 @@
 import React from "react";
-import { LightgalleryProvider, LightgalleryItem } from "react-lightgallery";
-import "lightgallery.js/dist/css/lightgallery.css";
+import "photoswipe/dist/photoswipe.css";
 
-const GROUP1 = [
-  [
-    "https://edufy-sigma.vercel.app/static/media/case-2.859bd4ba2ebbd4730032.png",
-  ],
-  [
-    "https://edufy-sigma.vercel.app/static/media/case-3.8c0c1972c214c2a06819.png",
-  ],
-  [
-    "https://edufy-sigma.vercel.app/static/media/case-1.973102b277452f00072b.png",
-  ],
-];
-
-const PhotoItem = ({ image, thumb, group }) => (
-  <div style={{ maxWidth: "300px", width: "300px", padding: "5px" }}>
-    <LightgalleryItem group={group} src={image} thumb={thumb}>
-      <img src={image} style={{ width: "100%" }} />
-    </LightgalleryItem>
-  </div>
-);
-
-function App() {
+import { Gallery, Item } from "react-photoswipe-gallery";
+const App = () => {
   return (
     <>
-      <LightgalleryProvider>
-        <h1 style={{ textAlign: "center" }}>React LightBox Gallery</h1>
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+      <Gallery>
+        <Item
+          original="https://placekitten.com/1024/768?image=1"
+          thumbnail="https://placekitten.com/80/60?image=1"
+          width="1024"
+          height="768"
         >
-          {GROUP1.map((p, idx) => (
-            <PhotoItem key={idx} image={p[0]} thumb={p[1]} group="group1" />
-          ))}
-        </div>
-      </LightgalleryProvider>
+          {({ ref, open }) => (
+            <img
+              ref={ref}
+              onClick={open}
+              src="https://placekitten.com/80/60?image=1"
+            />
+          )}
+        </Item>
+        <Item
+          original="https://placekitten.com/1024/768?image=2"
+          thumbnail="https://placekitten.com/80/60?image=2"
+          width="1024"
+          height="768"
+        >
+          {({ ref, open }) => (
+            <img
+              ref={ref}
+              onClick={open}
+              src="https://placekitten.com/80/60?image=2"
+            />
+          )}
+        </Item>
+      </Gallery>
     </>
   );
-}
+};
 
 export default App;
